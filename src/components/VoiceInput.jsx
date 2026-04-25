@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './VoiceInput.css';
 
-const VoiceInput = ({ onResult, isProcessing }) => {
+const VoiceInput = ({ onResult, isProcessing, language, t }) => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const recognitionRef = useRef(null);
@@ -34,16 +34,18 @@ const VoiceInput = ({ onResult, isProcessing }) => {
     }
   }, []);
 
+  // Update language when prop changes
+  useEffect(() => {
+    if (recognitionRef.current) {
+      recognitionRef.current.lang = language;
+    }
+  }, [language]);
+
   const toggleListening = () => {
     if (isListening) {
       recognitionRef.current?.stop();
       setIsListening(false);
-      if (transcript.trim() !== '') {
-        onResult(transcript);
-      } else {
-        // For testing, if no transcript but stopped, send an empty string so the mock AI can trigger
-        onResult('');
-      }
+      onResult(transcript);
     } else {
       setTranscript('');
       recognitionRef.current?.start();
@@ -54,8 +56,8 @@ const VoiceInput = ({ onResult, isProcessing }) => {
   return (
     <div className="voice-input-container glass-card">
       <div className="input-header">
-        <h2>Record Daily Update</h2>
-        <p>Tap the microphone and start speaking</p>
+        <h2>{t.recordTitle}</h2>
+        <p>{t.recordSubtitle}</p>
       </div>
 
       <div className="mic-wrapper">
@@ -65,17 +67,17 @@ const VoiceInput = ({ onResult, isProcessing }) => {
           onClick={toggleListening}
           disabled={isProcessing}
         >
-          {isListening ? '🛑' : isProcessing ? '⏳' : '🎤'}
+          {isListening ? t.btnStop : isProcessing ? t.btnWait : t.btnMic}
         </button>
       </div>
 
       <div className="transcript-area">
-        {transcript || (isListening ? 'Listening...' : 'Awaiting input...')}
+        {transcript || (isListening ? t.statusListening : t.statusAwaiting)}
       </div>
       
       {isListening && (
         <button className="finish-button" onClick={toggleListening}>
-          Finish Recording
+          {t.btnFinish}
         </button>
       )}
     </div>
