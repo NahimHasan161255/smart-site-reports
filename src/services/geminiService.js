@@ -3,7 +3,29 @@ export const generateReport = async (transcript, apiKey, languageCode) => {
     throw new Error('API Key is missing');
   }
 
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+  // First, dynamically fetch the available models to avoid "not found" errors
+  let modelToUse = 'models/gemini-1.5-flash'; // fallback
+  try {
+    const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+    if (listRes.ok) {
+      const listData = await listRes.json();
+      if (listData.models && listData.models.length > 0) {
+        // Find a gemini model that supports generateContent
+        const validModel = listData.models.find(m => 
+          m.supportedGenerationMethods?.includes("generateContent") && 
+          m.name.includes("gemini")
+        );
+        if (validModel) {
+          modelToUse = validModel.name; // This is usually formatted as 'models/gemini-XXX'
+        }
+      }
+    }
+  } catch (e) {
+    console.warn("Could not list models, using fallback", e);
+  }
+
+  // The endpoint uses the dynamically fetched model name
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/${modelToUse}:generateContent?key=${apiKey}`;
 
   const prompt = `
     You are an AI assistant for a construction site. 
