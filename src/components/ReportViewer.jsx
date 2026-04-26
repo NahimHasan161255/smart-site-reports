@@ -1,7 +1,7 @@
 import React from 'react';
 import './ReportViewer.css';
 
-const ReportViewer = ({ data, t }) => {
+const ReportViewer = ({ data, t, onSave, onClose }) => {
   const handleExportPDF = () => {
     // Uses the native browser print engine which guarantees a perfectly valid PDF
     window.print();
@@ -38,7 +38,14 @@ const ReportViewer = ({ data, t }) => {
         </div>
       </div>
       
-      <button className="export-button no-print" onClick={handleExportPDF}>{t.btnExport}</button>
+      <div className="report-actions no-print" style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+        <button className="export-button" style={{ flex: 1, margin: 0 }} onClick={handleExportPDF}>{t.btnExport}</button>
+        {data.id ? (
+           <button className="export-button" style={{ flex: 1, margin: 0, background: 'var(--danger)', color: '#fff', borderColor: 'var(--danger)' }} onClick={onClose}>{t.btnClose}</button>
+        ) : (
+           <button className="export-button" style={{ flex: 1, margin: 0, background: 'var(--success)', color: '#000', borderColor: 'var(--success)' }} onClick={() => onSave(data)}>{t.btnSaveDb}</button>
+        )}
+      </div>
     </div>
   );
 };

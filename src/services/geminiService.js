@@ -80,3 +80,56 @@ export const generateReport = async (transcript, apiKey, languageCode) => {
     throw error;
   }
 };
+
+export const translateReportContent = async (reportData, apiKey, targetLanguageCode) => {
+  if (!apiKey) throw new Error('API Key is missing');
+
+  let modelToUse = 'models/gemini-1.5-flash';
+  try {
+    const listRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+    if (listRes.ok) {
+      const listData = await listRes.json();
+      if (listData.models && listData.models.length > 0) {
+        const validModel = listData.models.find(m => m.supportedGenerationMethods?.includes("generateContent") && m.name.includes("gemini"));
+        if (validModel) modelToUse = validModel.name;
+      }
+    }
+  } catch (e) {
+    console.warn("Could not list models, using fallback", e);
+  }
+
+  const endpoint = `https://generativelanguage.googleapis.com/v1beta/${modelToUse}:generateContent?key=${apiKey}`;
+
+  const prompt = `
+    You are a professional translator for construction documents.
+    Translate the following JSON report values into the language code: ${targetLanguageCode}.
+    Do not change the keys or structure, only translate the values of 'progress', 'materials', and 'issues'.
+    Return ONLY a valid JSON object. No markdown, no other text.
+
+    Original Report:
+    {
+      "progress": "${reportData.progress}",
+      "materials": "${reportData.materials}",
+      "issues": "${reportData.issues}"
+    }
+  `;
+
+  const requestBody = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: { temperature: 0.1, responseMimeType: "application/json" }
+  };
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(requestBody)
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error?.message || 'Failed to fetch from Gemini API');
+  }
+
+  const data = await response.json();
+  return JSON.parse(data.candidates[0].content.parts[0].text);
+};

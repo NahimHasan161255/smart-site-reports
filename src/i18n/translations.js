@@ -24,7 +24,15 @@ export const translations = {
     mockProgress: "Mock Progress: Finished the structural framing. (No API Key provided)",
     mockMaterials: "Mock Materials: 100 steel beams used.",
     mockIssues: "Mock Issues: None. Waiting for inspector.",
-    notMentioned: "Not mentioned"
+    notMentioned: "Not mentioned",
+    btnSaveDb: "💾 Save to Database",
+    historyTitle: "Report History",
+    btnDelete: "🗑️ Delete",
+    btnView: "👁️ View",
+    btnClose: "✖ Close",
+    noHistory: "No saved reports yet.",
+    btnGenerateReport: "✨ Generate AI Report",
+    placeholderTranscript: "Speak or type your daily update here..."
   },
   'es-US': {
     appTitle: "Informes de Obra Inteligentes",
@@ -51,7 +59,15 @@ export const translations = {
     mockProgress: "Progreso de Prueba: Se terminó la estructura metálica.",
     mockMaterials: "Materiales de Prueba: Se usaron 100 vigas de acero.",
     mockIssues: "Problemas de Prueba: Ninguno. Esperando al inspector.",
-    notMentioned: "No mencionado"
+    notMentioned: "No mencionado",
+    btnSaveDb: "💾 Guardar en Base de Datos",
+    historyTitle: "Historial de Informes",
+    btnDelete: "🗑️ Borrar",
+    btnView: "👁️ Ver",
+    btnClose: "✖ Cerrar",
+    noHistory: "Aún no hay informes guardados.",
+    btnGenerateReport: "✨ Generar Informe de IA",
+    placeholderTranscript: "Habla o escribe tu actualización diaria aquí..."
   },
   'ja-JP': {
     appTitle: "スマート現場レポート",
@@ -78,7 +94,15 @@ export const translations = {
     mockProgress: "テスト進捗: 鉄骨の骨組みが完了しました。",
     mockMaterials: "テスト資材: 鉄骨を100本使用。",
     mockIssues: "テスト問題: なし。検査官の到着待ち。",
-    notMentioned: "言及なし"
+    notMentioned: "言及なし",
+    btnSaveDb: "💾 データベースに保存",
+    historyTitle: "履歴レポート",
+    btnDelete: "🗑️ 削除",
+    btnView: "👁️ 表示",
+    btnClose: "✖ 閉じる",
+    noHistory: "保存されたレポートはまだありません。",
+    btnGenerateReport: "✨ AIレポートを作成",
+    placeholderTranscript: "ここに日報を話すか入力してください..."
   },
   'bn-BD': {
     appTitle: "স্মার্ট সাইট রিপোর্ট",
@@ -105,11 +129,19 @@ export const translations = {
     mockProgress: "ডামি অগ্রগতি: কাঠামোগত ফ্রেমিং শেষ হয়েছে।",
     mockMaterials: "ডামি সামগ্রী: ১০০টি স্টিল বিম ব্যবহার করা হয়েছে।",
     mockIssues: "ডামি সমস্যা: কোনো সমস্যা নেই। পরিদর্শকের জন্য অপেক্ষা করছি।",
-    notMentioned: "উল্লেখ করা হয়নি"
+    notMentioned: "উল্লেখ করা হয়নি",
+    btnSaveDb: "💾 ডাটাবেসে সেভ করুন",
+    historyTitle: "রিপোর্টের ইতিহাস",
+    btnDelete: "🗑️ মুছুন",
+    btnView: "👁️ দেখুন",
+    btnClose: "✖ বন্ধ করুন",
+    noHistory: "এখনও কোনো রিপোর্ট সেভ করা হয়নি।",
+    btnGenerateReport: "✨ এআই রিপোর্ট তৈরি করুন",
+    placeholderTranscript: "আপনার দৈনিক আপডেট এখানে বলুন বা টাইপ করুন..."
   },
   'hi-IN': {
     appTitle: "स्मार्ट साइट रिपोर्ट्स",
-    appSubtitle: "निर्माण के लिए वॉयस-स्वचालित दैनिक लॉग।",
+    appSubtitle: "निर्माण के लिए वॉयस-स्वचालित दैनिक লগ।",
     apiKeyLabel: "जेमिनी API कुंजी",
     apiKeyPlaceholder: "अपनी API कुंजी यहाँ पेस्ट करें...",
     languageLabel: "बोली जाने वाली भाषा",
@@ -132,6 +164,14 @@ export const translations = {
     mockProgress: "मॉक प्रगति: ढांचागत काम पूरा हो गया।",
     mockMaterials: "मॉक सामग्री: 100 स्टील बीम इस्तेमाल किए गए।",
     mockIssues: "मॉक समस्याएँ: कोई नहीं। इंस्पेक्टर का इंतज़ार है।",
-    notMentioned: "उल्लेख नहीं किया गया"
+    notMentioned: "उल्लेख नहीं किया गया",
+    btnSaveDb: "💾 डेटाबेस में सहेजें",
+    historyTitle: "रिपोर्ट इतिहास",
+    btnDelete: "🗑️ हटाएं",
+    btnView: "👁️ देखें",
+    btnClose: "✖ बंद करें",
+    noHistory: "अभी तक कोई सहेजी गई रिपोर्ट नहीं है।",
+    btnGenerateReport: "✨ AI रिपोर्ट जेनरेट करें",
+    placeholderTranscript: "अपना दैनिक अपडेट यहाँ बोलें या टाइप करें..."
   }
 };

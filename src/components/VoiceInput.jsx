@@ -18,6 +18,7 @@ const VoiceInput = ({ onResult, isProcessing, language, t }) => {
         for (let i = 0; i < event.results.length; i++) {
           currentTranscript += event.results[i][0].transcript;
         }
+        // Overwrite the textarea with what the speech engine thinks we said
         setTranscript(currentTranscript);
       };
 
@@ -45,12 +46,15 @@ const VoiceInput = ({ onResult, isProcessing, language, t }) => {
     if (isListening) {
       recognitionRef.current?.stop();
       setIsListening(false);
-      onResult(transcript);
     } else {
-      setTranscript('');
+      setTranscript(''); // Clear to start fresh
       recognitionRef.current?.start();
       setIsListening(true);
     }
+  };
+
+  const handleGenerate = () => {
+    onResult(transcript);
   };
 
   return (
@@ -71,13 +75,23 @@ const VoiceInput = ({ onResult, isProcessing, language, t }) => {
         </button>
       </div>
 
-      <div className="transcript-area">
-        {transcript || (isListening ? t.statusListening : t.statusAwaiting)}
-      </div>
+      <textarea 
+        className="transcript-area editable" 
+        value={transcript}
+        onChange={(e) => setTranscript(e.target.value)}
+        placeholder={isListening ? t.statusListening : t.placeholderTranscript}
+        disabled={isListening || isProcessing}
+      />
       
       {isListening && (
         <button className="finish-button" onClick={toggleListening}>
           {t.btnFinish}
+        </button>
+      )}
+
+      {!isListening && transcript.trim() && (
+        <button className="generate-button" onClick={handleGenerate} disabled={isProcessing}>
+          {isProcessing ? "..." : t.btnGenerateReport}
         </button>
       )}
     </div>
