@@ -24,8 +24,13 @@ function App() {
     if (storedKey) {
       setApiKey(storedKey);
     }
-    setSavedReports(getReports());
+    fetchReports();
   }, []);
+
+  const fetchReports = async () => {
+    const reports = await getReports();
+    setSavedReports(reports);
+  };
 
   const handleApiKeyChange = (e) => {
     const val = e.target.value;
@@ -115,15 +120,15 @@ function App() {
     }
   };
 
-  const handleSaveReport = (report) => {
-    saveReport(report);
-    setSavedReports(getReports());
+  const handleSaveReport = async (report) => {
+    await saveReport(report);
+    await fetchReports();
     setReportData(null); // Clear viewer to return to main screen
   };
 
-  const handleDeleteReport = (id) => {
-    deleteReport(id);
-    setSavedReports(getReports());
+  const handleDeleteReport = async (id) => {
+    await deleteReport(id);
+    await fetchReports();
   };
 
   return (

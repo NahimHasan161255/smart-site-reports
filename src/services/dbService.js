@@ -1,26 +1,51 @@
-const DB_KEY = 'smart_site_reports_db';
+const API_URL = 'http://localhost:5000/api/reports';
 
-export const saveReport = (report) => {
-  const existingReports = getReports();
-  const newReport = { ...report, id: Date.now().toString() };
-  existingReports.unshift(newReport); // Add to beginning of array
-  localStorage.setItem(DB_KEY, JSON.stringify(existingReports));
-  return newReport;
-};
-
-export const getReports = () => {
+export const saveReport = async (reportData) => {
   try {
-    const data = localStorage.getItem(DB_KEY);
-    return data ? JSON.parse(data) : [];
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(reportData)
+    });
+    if (!response.ok) throw new Error('Network response was not ok');
+    return await response.json();
   } catch (error) {
-    console.error("Error reading from local database:", error);
-    return [];
+    console.error("Error saving to MongoDB:", error);
+    // Fallback to local storage if backend is not running
+    const existing = getReportsSync();
+    const newReport = { ...reportData, id: Date.now().toString() };
+    localStorage.setItem('reports', JSON.stringify([newReport, ...existing]));
+    return newReport;
   }
 };
 
-export const deleteReport = (id) => {
-  const existingReports = getReports();
-  const updatedReports = existingReports.filter(r => r.id !== id);
-  localStorage.setItem(DB_KEY, JSON.stringify(updatedReports));
-  return updatedReports;
+export const getReports = async () => {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error('Network response was not ok');
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching from MongoDB, falling back to local storage:", error);
+    return getReportsSync();
+  }
+};
+
+export const deleteReport = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+    if (!response.ok) throw new Error('Network response was not ok');
+    return true;
+  } catch (error) {
+    console.error("Error deleting from MongoDB:", error);
+    // Fallback
+    const reports = getReportsSync();
+    const filtered = reports.filter(r => r.id !== id);
+    localStorage.setItem('reports', JSON.stringify(filtered));
+    return true;
+  }
+};
+
+const getReportsSync = () => {
+  const reports = localStorage.getItem('reports');
+  return reports ? JSON.parse(reports) : [];
 };
