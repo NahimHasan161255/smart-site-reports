@@ -31,8 +31,12 @@ export const translations = {
     btnView: "👁️ View",
     btnClose: "✖ Close",
     noHistory: "No saved reports yet.",
-    btnGenerateReport: "✨ Generate AI Report",
-    placeholderTranscript: "Speak or type your daily update here..."
+    btnGenerateReport: "✨ Generate Final Report",
+    placeholderTranscript: "Speak or type your update here...",
+    btnSaveEntry: "💾 Save Entry",
+    btnUpdateEntry: "💾 Update Entry",
+    btnEdit: "✏️ Edit",
+    dailyLogsTitle: "Today's Logs"
   },
   'es-US': {
     appTitle: "Informes de Obra Inteligentes",
@@ -40,7 +44,7 @@ export const translations = {
     apiKeyLabel: "Clave API de Gemini",
     apiKeyPlaceholder: "Pega tu clave API aquí...",
     languageLabel: "Idioma Hablado",
-    recordTitle: "Registrar Actualización Diaria",
+    recordTitle: "Registrar Actualización",
     recordSubtitle: "Toca el micrófono y empieza a hablar",
     btnStop: "🛑",
     btnWait: "⏳",
@@ -66,8 +70,12 @@ export const translations = {
     btnView: "👁️ Ver",
     btnClose: "✖ Cerrar",
     noHistory: "Aún no hay informes guardados.",
-    btnGenerateReport: "✨ Generar Informe de IA",
-    placeholderTranscript: "Habla o escribe tu actualización diaria aquí..."
+    btnGenerateReport: "✨ Generar Informe Final",
+    placeholderTranscript: "Habla o escribe tu actualización aquí...",
+    btnSaveEntry: "💾 Guardar Entrada",
+    btnUpdateEntry: "💾 Actualizar Entrada",
+    btnEdit: "✏️ Editar",
+    dailyLogsTitle: "Registros de Hoy"
   },
   'ja-JP': {
     appTitle: "スマート現場レポート",
@@ -75,7 +83,7 @@ export const translations = {
     apiKeyLabel: "Gemini APIキー",
     apiKeyPlaceholder: "APIキーをここに貼り付け...",
     languageLabel: "使用言語",
-    recordTitle: "日報を記録する",
+    recordTitle: "更新を記録する",
     recordSubtitle: "マイクをタップして話し始めてください",
     btnStop: "🛑",
     btnWait: "⏳",
@@ -101,8 +109,12 @@ export const translations = {
     btnView: "👁️ 表示",
     btnClose: "✖ 閉じる",
     noHistory: "保存されたレポートはまだありません。",
-    btnGenerateReport: "✨ AIレポートを作成",
-    placeholderTranscript: "ここに日報を話すか入力してください..."
+    btnGenerateReport: "✨ 最終レポートを作成",
+    placeholderTranscript: "ここに更新内容を話すか入力してください...",
+    btnSaveEntry: "💾 エントリーを保存",
+    btnUpdateEntry: "💾 エントリーを更新",
+    btnEdit: "✏️ 編集",
+    dailyLogsTitle: "今日の記録"
   },
   'bn-BD': {
     appTitle: "স্মার্ট সাইট রিপোর্ট",
@@ -110,7 +122,7 @@ export const translations = {
     apiKeyLabel: "জেমিনি এপিআই কি",
     apiKeyPlaceholder: "আপনার এপিআই কি এখানে পেস্ট করুন...",
     languageLabel: "কথ্য ভাষা",
-    recordTitle: "দৈনিক আপডেট রেকর্ড করুন",
+    recordTitle: "আপডেট রেকর্ড করুন",
     recordSubtitle: "মাইক্রোফোনে ট্যাপ করুন এবং কথা বলা শুরু করুন",
     btnStop: "🛑",
     btnWait: "⏳",
@@ -136,8 +148,12 @@ export const translations = {
     btnView: "👁️ দেখুন",
     btnClose: "✖ বন্ধ করুন",
     noHistory: "এখনও কোনো রিপোর্ট সেভ করা হয়নি।",
-    btnGenerateReport: "✨ এআই রিপোর্ট তৈরি করুন",
-    placeholderTranscript: "আপনার দৈনিক আপডেট এখানে বলুন বা টাইপ করুন..."
+    btnGenerateReport: "✨ চূড়ান্ত রিপোর্ট তৈরি করুন",
+    placeholderTranscript: "আপনার আপডেট এখানে বলুন বা টাইপ করুন...",
+    btnSaveEntry: "💾 এন্ট্রি সেভ করুন",
+    btnUpdateEntry: "💾 এন্ট্রি আপডেট করুন",
+    btnEdit: "✏️ এডিট",
+    dailyLogsTitle: "আজকের লগ"
   },
   'hi-IN': {
     appTitle: "स्मार्ट साइट रिपोर्ट्स",
@@ -145,7 +161,7 @@ export const translations = {
     apiKeyLabel: "जेमिनी API कुंजी",
     apiKeyPlaceholder: "अपनी API कुंजी यहाँ पेस्ट करें...",
     languageLabel: "बोली जाने वाली भाषा",
-    recordTitle: "दैनिक अपडेट रिकॉर्ड करें",
+    recordTitle: "अपडेट रिकॉर्ड करें",
     recordSubtitle: "माइक्रोफोन पर टैप करें और बोलना शुरू करें",
     btnStop: "🛑",
     btnWait: "⏳",
@@ -171,7 +187,11 @@ export const translations = {
     btnView: "👁️ देखें",
     btnClose: "✖ बंद करें",
     noHistory: "अभी तक कोई सहेजी गई रिपोर्ट नहीं है।",
-    btnGenerateReport: "✨ AI रिपोर्ट जेनरेट करें",
-    placeholderTranscript: "अपना दैनिक अपडेट यहाँ बोलें या टाइप करें..."
+    btnGenerateReport: "✨ अंतिम रिपोर्ट जेनरेट करें",
+    placeholderTranscript: "अपना अपडेट यहाँ बोलें या टाइप करें...",
+    btnSaveEntry: "💾 प्रविष्टि सहेजें",
+    btnUpdateEntry: "💾 प्रविष्टि अपडेट करें",
+    btnEdit: "✏️ संपादित करें",
+    dailyLogsTitle: "आज के लॉग"
   }
 };
